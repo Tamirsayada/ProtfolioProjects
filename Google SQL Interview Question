@@ -1,0 +1,26 @@
+-- Find ids of companies that have more than 2 users who speak English, German, French, or Spanish.
+
+Table info
+
+user_id:
+int
+created_at:
+datetime
+company_id:
+int
+language:
+varchar
+activated_at:
+datetime
+state:
+varchar
+
+select distinct a.company_id
+from playbook_users a
+join playbook_users b
+on a.created_at <> b.created_at
+where a.company_id = b.company_id
+and(a.language='english' or a.language='spanish' or a.language= 'french' or a.language= 'german')
+and(b.language='english' or b.language='spanish' or b.language= 'french' or b.language= 'german')
+order by 1
+;
